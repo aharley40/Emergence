@@ -29,12 +29,12 @@ exports.mysql = function(name, controller, options) {
 	
 
 	// check for existing mysqld process
-	if(fs.existsSync(me.options.pidPath))
+	if(path.existsSync(me.options.pidPath))
 	{
 		me.pid = parseInt(fs.readFileSync(me.options.pidPath));
 		console.log(me.name+': found existing PID: '+me.pid+', checking /proc/'+me.pid);
 		
-		if(fs.existsSync('/proc/'+me.pid))
+		if(path.existsSync('/proc/'+me.pid))
 		{
 			me.status = 'online';
 		}
@@ -65,7 +65,7 @@ exports.mysql.prototype.start = function(firstRun) {
 	this.writeConfig();
 	
 	// init run directory if needed
-	if(!fs.existsSync(me.options.runDir))
+	if(!path.existsSync(me.options.runDir))
 	{
 		console.log(me.name+': initializing new run directory');
 		fs.mkdirSync(me.options.runDir, 0775);
@@ -73,7 +73,7 @@ exports.mysql.prototype.start = function(firstRun) {
 	}
 	
 	// init data directory if needed
-	if(!fs.existsSync(me.options.dataDir))
+	if(!path.existsSync(me.options.dataDir))
 	{
 		console.log(me.name+': initializing new data directory...');
 		fs.mkdirSync(me.options.dataDir, 0775);
@@ -174,7 +174,7 @@ exports.mysql.prototype.restart = function() {
 	
 	// wait for pid to disappear before attempting start
 	process.stdout.write(me.name+': waiting for shutdown');
-	while(fs.existsSync(me.options.pidPath))
+	while(path.existsSync(me.options.pidPath))
 	{
 		process.stdout.write('.');
 		var now = new Date().getTime();
