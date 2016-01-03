@@ -8,10 +8,10 @@
         "mysql": "0.9.x",
         "node-static": "0.6.x",
         "http-auth": "1.2.7",
-        "posix": "JarvusInnovations/node-posix#master",
-        "hostile": "^1.0.2",
-        "shelljs": "^0.5.3",
-        "semver": "^5.1.0"
+        "posix": "4.0.x",
+        "hostile": "0.4.x",
+        "shelljs": "0.5.x",
+        "semver": "5.1.x"
     },
     "bin": {
         "emergence-kernel": "./bin/kernel",
